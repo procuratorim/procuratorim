@@ -1,1 +1,395 @@
-test2 procuratorim
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прокураторим — Помощь в решении особо трудных вопросов</title>
+    <meta name="description" content="Помощь в решении особо трудных вопросов. Мошенники, долги, пропавшие, бездействие органов — обращайтесь 24/7.">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --red: #d90000;
+            --dark: #090909;
+            --mid: #111111;
+            --card: #161616;
+            --border: rgba(255,255,255,0.07);
+            --light: #f2f2f2;
+            --muted: #777;
+            --r: 14px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--dark);
+            color: var(--light);
+            font-family: system-ui, -apple-system, 'Segoe UI', Helvetica, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ── HEADER ─────────────────────────────────────────── */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(9,9,9,0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 clamp(16px, 5vw, 64px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 62px;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: inherit;
+            flex-shrink: 0;
+        }
+
+        .brand-logo {
+            width: 36px;
+            height: 36px;
+            background: var(--red);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 19px;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .brand-name {
+            font-weight: 700;
+            font-size: 17px;
+            color: #fff;
+        }
+
+        .brand-sub {
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: none;
+        }
+
+        @media (min-width: 540px) { .brand-sub { display: block; } }
+
+        header nav {
+            display: flex;
+            gap: 2px;
+        }
+
+        header nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 20px;
+            transition: color .18s, background .18s;
+            white-space: nowrap;
+        }
+
+        header nav a:hover {
+            color: #fff;
+            background: rgba(255,255,255,0.07);
+        }
+
+        /* ── HERO ────────────────────────────────────────────── */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            padding: clamp(48px, 8vw, 100px) clamp(16px, 5vw, 64px);
+            max-width: 1160px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 720px) {
+            .hero {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+            .hero-text  { order: 1; }
+            .hero-image { order: 2; }
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+        }
+
+        @media (min-width: 720px) { .hero-image { justify-content: flex-end; } }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 360px;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 20px;
+            display: block;
+            box-shadow: 0 24px 64px rgba(0,0,0,.6);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            background: var(--red);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 9px;
+            border-radius: 20px;
+            margin-bottom: 18px;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: clamp(26px, 5vw, 50px);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -.5px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .hero p {
+            font-size: clamp(14px, 2vw, 17px);
+            color: var(--muted);
+            margin-bottom: 32px;
+            line-height: 1.75;
+        }
+
+        .hero p strong {
+            color: var(--light);
+        }
+
+        /* ── CTA BUTTON ───────────────────────────────────────── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--red);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            padding: 13px 26px;
+            border-radius: 40px;
+            transition: opacity .18s, transform .18s;
+        }
+
+        .btn:hover { opacity: .88; transform: translateY(-2px); }
+
+        .btn-ghost {
+            background: transparent;
+            border: 1.5px solid rgba(255,255,255,0.18);
+            color: var(--light);
+        }
+
+        .btn-ghost:hover { background: rgba(255,255,255,0.05); }
+
+        /* ── SERVICES ────────────────────────────────────────── */
+        .section {
+            padding: clamp(40px, 6vw, 80px) clamp(16px, 5vw, 64px);
+            max-width: 1160px;
+            margin: 0 auto;
+        }
+
+        .eyebrow {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: clamp(20px, 4vw, 34px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 36px;
+            color: #fff;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 14px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 22px 20px 22px 24px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color .2s, transform .2s;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 100%;
+            background: var(--red);
+            border-radius: 3px 0 0 3px;
+        }
+
+        .card:hover {
+            border-color: rgba(217,0,0,.35);
+            transform: translateY(-2px);
+        }
+
+        .card p {
+            font-size: 14.5px;
+            line-height: 1.65;
+            color: rgba(242,242,242,.82);
+        }
+
+        /* ── CONTACT ─────────────────────────────────────────── */
+        .contact-wrap {
+            background: var(--mid);
+            border-top: 1px solid var(--border);
+        }
+
+        .contact-inner {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: clamp(48px, 8vw, 96px) clamp(16px, 5vw, 64px);
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        @media (min-width: 720px) {
+            .contact-inner {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        .contact-text h2 {
+            font-size: clamp(22px, 4vw, 38px);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .contact-text p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .contact-btns {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* ── FOOTER ──────────────────────────────────────────── */
+        footer {
+            background: var(--dark);
+            border-top: 1px solid var(--border);
+            padding: 22px clamp(16px, 5vw, 64px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            font-size: 12px;
+            gap: 12px;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        footer span { opacity: .45; }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <a href="#" class="brand">
+        <div class="brand-logo">П</div>
+        <div>
+            <div class="brand-name">Прокураторим</div>
+            <div class="brand-sub">Определённо сложный помощник</div>
+        </div>
+    </a>
+    <nav>
+        <a href="#info">Информация</a>
+        <a href="#contact">Контакт</a>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="info">
+    <div class="hero-text">
+        <div class="badge">18+</div>
+        <h1>Помощь в решении особо&#8209;трудных вопросов</h1>
+        <p>По этим и другим вопросам — обращайтесь в&nbsp;наш Телеграм аккаунт <strong>@procuraTORim</strong></p>
+        <a href="https://t.me/procuratorim" class="btn" target="_blank" rel="noopener noreferrer">
+            Написать в Телеграм →
+        </a>
+    </div>
+    <div class="hero-image">
+        <img src="image.jpg" alt="Прокураторим">
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section">
+    <div class="eyebrow">Чем мы помогаем</div>
+    <div class="section-title">Беремся за самые трудные ситуации</div>
+    <div class="grid">
+        <div class="card"><p>Вас обманули мошенники, но вы не знаете как их найти?</p></div>
+        <div class="card"><p>Вам должны крупную сумму денег и не собираются возвращать?</p></div>
+        <div class="card"><p>Вы не можете найти человека, пропавшего без вести?</p></div>
+        <div class="card"><p>Органы правопорядка бездействуют?</p></div>
+        <div class="card"><p>Вы в поисках деловых связей?</p></div>
+        <div class="card"><p>Вы хотите найти управу на обидчика?</p></div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-wrap" id="contact">
+    <div class="contact-inner">
+        <div class="contact-text">
+            <h2>Контакт</h2>
+            <p>Работаем круглосуточно — без выходных</p>
+        </div>
+        <div class="contact-btns">
+            <a href="https://t.me/procuratorim" class="btn" target="_blank" rel="noopener noreferrer">
+                Открыть Телеграм →
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <span>прокураторим.юникон.ком</span>
+    <span>·</span>
+    <span>2024</span>
+    <span>·</span>
+    <span>Осторожно! Сложно</span>
+</footer>
+
+</body>
+</html>
